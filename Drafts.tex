@@ -1,0 +1,36 @@
+\section*{Notation of refs}
+
+Capitalize the first letter of the words Equation and Figure when you follow with a \textbackslash ref.
+Example: Equation \ref{eq:example} is a very interesting equation.
+
+\begin{equation}
+	1 + 1 = 2
+	\label{eq:example}
+\end{equation}
+
+
+\section{Appendix}
+
+\subsection{Torch.compile}
+Torch.compile: in the ideal case I would have liked to be able to compile the code first, which is a new feature in Pytorch 2.0. However this doesn't work for our code
+\todo[inline]{not related to sparsity, didn't work due to custom functions}
+
+
+\begin{itemize}
+    \item Hyperparameter search. Up to a 100 different options can be tested at the same time, allowing for providing better certainty in the change of accuracy over the various settings
+    \item Efficient ablation study: A lot of different ablations can be performed at the same time
+    \item An ensemble of networks can be trained which uses a voting scheme for predicting the final output, this would however also require more memory on the drone itself
+    \item Replacing elements of the RNN with a data efficient transformer. If sufficient training data would be available then such a network would likely have a higher accuracy, and be able to train faster due to the higher GPU utilization
+    \todo[inline]{cite transformers lower inference}
+    \item Increasing the amount of channels. This can be increased up to a factor 100, however this will increase the memory requirements in inference. 
+    \item Providing better confidence intervals. Often just the accuracy of a single training run is provided, whereas a different random seed can, and often has (slightly) different results. Training on various different random seeds will provide better information on the performance noise 
+    \item Performance benefits by torch.autocast (not faster, but about 1.8 times less memory), and torch.compile (does not work with the current network, but if it works it would likely reduce overhead) 
+    \item Keeping an eye on developments, better and better support for sparsity (such as the new H100 GPU)
+\end{itemize}
+
+
+
+\subsection{Ablations}
+In order to test the effects of changing different elements. Removing these elements show that there is a likely a lot of overhead between changing the memory locations, and very little time is actually spent computing. This can be seen in XX, where it shows that the required GEMM take in the order of microseconds. 
+
+In the end, it shows that a factor 100 However, this speedup can not yet be realized due to the time cost of memory allocation as well as the sequential nature of 

@@ -1,0 +1,15 @@
+\subsection{Sparse Matrices}
+Sparse matrices predominantly contain zero elements. Storing these explicitly is inefficient, leading to the development of compact storage schemes. Two popular formats are the Coordinate (COO) and the Compressed Sparse Row (CSR) formats.
+
+\textbf{Coordinate (COO) Format}:
+A sparse matrix in COO format is represented using three one-dimensional arrays:
+\begin{itemize}
+    \item \textit{rows}: Row indices of non-zero elements.
+    \item \textit{cols}: Column indices of non-zero elements.
+    \item \textit{vals}: Non-zero elements.
+\end{itemize}
+For any index $k$, the matrix element is $(\textit{rows}[k], \textit{cols}[k]) = \textit{vals}[k]$.
+
+
+\subsection{Evimo5 Dataset}
+Evimo is a toolkit for fusing data streams from multiple cameras (event-based, rgb or potentially any other kind of visual sensor) with a motion capture system in a AR-like fashion to automatically generate ground truth annotations for motion, depth and scene segmentation (both motion or semantic). The toolkit uses static 3D scans of the objects on the scene to achieve this goal - the objects and cameras are fitted with motion capture markers and the simulated ground truth is overlaid on the real data from sensors.
